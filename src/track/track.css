@@ -1,0 +1,10 @@
+.track{
+    /* display: inline; */
+    position: left;
+    font-size: 14px;
+    /* background-color: green;  */
+}
+
+.subs{
+    color: lightgray;
+}

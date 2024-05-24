@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+  background: transparent; 
+}
+
+.title {
+  display: block;
+  align-items: center;
+  color: white;
+  background-color: #3f444a;
+  height: 5rem;
+  font-size: 2.5rem;
+  align-content: center;
+  border-bottom: 2px solid darkorange;
+}
+
+/* used to color the second half of the title */
+.title2 {
+  color: darkorange;
+}
+
+button {
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: darkblue;
+  border-radius: 50px;
+  padding: 8px 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  line-height: 26px;
+}
+
+button:hover {background-color: #4299e1}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

@@ -1,0 +1,12 @@
+body {
+  margin: 0; 
+  background: url('./pexels-wendywei-1540338.jpg') no-repeat center center fixed;
+  -o-background-size: cover;
+  background-size: cover ;
+   
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  
+}
+
+
