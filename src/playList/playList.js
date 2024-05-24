@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './playList.css';
 import TrackList from '../trackList/trackList';
 import GetAccessToken from '../accessToken/accessToken';
@@ -27,11 +27,13 @@ function PlayList(props) {
       setPlayListTitle(e.target.value);
     };
 
-    function saveToSpotify(e) {
-      e.preventDefault();
-      setToken(<GetAccessToken />)
-    }
 
+
+   function saveToSpotify(e) {
+       e.preventDefault();
+       setToken(<GetAccessToken expiry = {expiry} setExpiry = {setExpiry}/>);      
+     }
+    
     
 
    return (
@@ -75,15 +77,18 @@ function PlayList(props) {
          }
        </div>
             
-       <button className="spotifyButton" onClick={saveToSpotify}>Save To Spotify</button>;
+       <button className="spotifyButton" onClick={saveToSpotify}>Save To Spotify</button>
 
-       <h3>Expires in: {token} seconds</h3>
+      
+       <h4>{ token }</h4>
+       <h4>{expiry}</h4>
        
-
+    
       </>
    );
       
    
+
 }
 
 

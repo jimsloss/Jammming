@@ -1,18 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import PlayList from '../playList/playList';
 import { json, useParams } from 'react-router-dom';
 
 const CLIENT_ID = process.env.REACT_APP_API_KEY;
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
-const REDIRECT_URI = 'http://localhost:3000/';
-const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';  // the authorise endpoint
-const RESPONSE_TYPE = "token";    
+
+// const REDIRECT_URI = 'http://localhost:3000/';
+// const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';  // the authorise endpoint
+// const RESPONSE_TYPE = "token";    
+
 let token
-let expiry
-let other
+let expires
 
-
-function GetAccessToken(){
+function GetAccessToken(props){
 
     /*
       The access token is valid for 1 hour (3600 seconds). After which it expires and will need to request a new one.
@@ -21,14 +19,12 @@ function GetAccessToken(){
 
   // Request Authorisation to access data: 
 
-  let url = AUTH_ENDPOINT;
-  url += `?response_type=${RESPONSE_TYPE}`;
-  url += `&client_id=${CLIENT_ID}`;             
-  url += `&redirect_uri=${REDIRECT_URI}`;       
+  // let url = AUTH_ENDPOINT;
+  // url += `?response_type=${RESPONSE_TYPE}`;
+  // url += `&client_id=${CLIENT_ID}`;             
+  // url += `&redirect_uri=${REDIRECT_URI}`;       
 
-  const saveToSpotify = async () => {
-
-    //e.preventDefault();
+  const getToken = async () => {
 
     const response = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
@@ -40,19 +36,20 @@ function GetAccessToken(){
         if (response.ok) {
             const returnedValue = await response.json();
             token = returnedValue['access_token'];
-            other= returnedValue['expires_in'];
+            expires = returnedValue['expires_in'];
+            props.setExpiry(expires);
         }
+        
     }
     catch (error) {
         throw (error)
     }
   }
 
-  saveToSpotify();
+ getToken();
+ 
 
-  
   return token
-
 }
 
 
